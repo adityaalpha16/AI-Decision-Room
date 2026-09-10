@@ -7,6 +7,11 @@ AI Decision Room is a full-stack AI-powered decision-support platform that helps
 Instead of relying on a single AI response, the platform sends a user's decision to multiple specialized AI agents. Each agent independently evaluates the decision from a different perspective, after which an AI Judge synthesizes the results into a final report containing a recommendation, confidence score, risks, opportunities, and supporting reasoning.
 
 ---
+## 📊 Dashboard
+
+![AI Decision Room Dashboard](./screenshots/dashboard.png)
+
+---
 
 ## 🚀 Why AI Decision Room?
 
@@ -28,7 +33,39 @@ The platform:
 The goal is not to replace human decision-making, but to provide structured perspectives that help users reason about their choices.
 
 ---
+# 🛠️ Technology Stack
 
+## Frontend
+
+- **React** — Component-based user interface
+- **Vite** — Frontend development and build tool
+- **Tailwind CSS** — Responsive styling and UI design
+- **React Router** — Client-side routing and protected pages
+- **Lucide React** — UI icons
+
+## Backend
+
+- **Node.js** — JavaScript runtime
+- **Express.js** — REST API framework
+- **JWT** — Authentication and authorization
+- **bcrypt** — Password hashing
+- **REST API** — Frontend/backend communication
+
+## Database
+
+- **PostgreSQL** — Relational database for users, decisions, analyses, agents, and reports
+
+## AI
+
+- **Google Gemini API** — AI-powered analysis and final report generation
+
+## Development Tools
+
+- **Git** — Version control
+- **GitHub** — Source code hosting
+- **VS Code** — Development environment
+
+---
 # ✨ Features
 
 ## 🤖 Multi-Agent AI Analysis
