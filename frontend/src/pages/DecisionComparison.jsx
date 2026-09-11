@@ -55,11 +55,11 @@ function DecisionComparison() {
 
         const [decisionsResponse, reportsResponse] =
           await Promise.all([
-            fetch("http://localhost:5001/api/decisions", {
+            fetch(`${import.meta.env.VITE_API_URL}/api/decisions`, {
               headers,
             }),
 
-            fetch("http://localhost:5001/api/decisions/reports", {
+            fetch(`${import.meta.env.VITE_API_URL}/api/decisions/reports`, {
               headers,
             }),
           ]);

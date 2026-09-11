@@ -1,5 +1,7 @@
 import { useState } from "react";
+
 import { useNavigate } from "react-router-dom";
+
 import {
   ArrowRight,
   Sparkles,
@@ -18,7 +20,6 @@ function NewDecision() {
   const [title, setTitle] = useState("");
   const [problem, setProblem] = useState("");
   const [context, setContext] = useState("");
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -48,13 +49,15 @@ function NewDecision() {
       }
 
       const response = await fetch(
-        "http://localhost:5001/api/decisions",
+        `${import.meta.env.VITE_API_URL}/api/decisions`,
         {
           method: "POST",
+
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
+
           body: JSON.stringify({
             title: title.trim(),
             problem: problem.trim(),
@@ -72,11 +75,14 @@ function NewDecision() {
       }
 
       navigate(`/decisions/${data.decision.id}`);
+
     } catch (err) {
       console.error("Create decision error:", err);
+
       setError(
         err.message || "Something went wrong. Please try again."
       );
+
     } finally {
       setLoading(false);
     }
@@ -100,13 +106,16 @@ function NewDecision() {
           <div className="mb-4 flex items-center gap-3">
 
             <div className="rounded-xl border border-blue-500/20 bg-blue-500/10 p-3">
+
               <Sparkles
                 size={24}
                 className="text-blue-400"
               />
+
             </div>
 
             <div>
+
               <h1 className="text-2xl font-bold md:text-3xl">
                 Create New Decision
               </h1>
@@ -115,6 +124,7 @@ function NewDecision() {
                 Give the AI Decision Room the context it needs
                 to evaluate your decision.
               </p>
+
             </div>
 
           </div>
@@ -131,6 +141,7 @@ function NewDecision() {
 
             {/* Error */}
             {error && (
+
               <div className="mb-6 flex items-center gap-3 rounded-xl border border-red-500/20 bg-red-500/5 p-4 text-red-400">
 
                 <AlertCircle size={20} />
@@ -140,6 +151,7 @@ function NewDecision() {
                 </span>
 
               </div>
+
             )}
 
             {/* Decision Title */}
@@ -206,15 +218,18 @@ function NewDecision() {
                 htmlFor="context"
                 className="mb-2 flex items-center gap-2 text-sm font-medium text-gray-300"
               >
+
                 <Lightbulb
                   size={17}
                   className="text-blue-400"
                 />
 
                 Additional Context
+
                 <span className="text-xs text-gray-600">
                   Optional
                 </span>
+
               </label>
 
               <textarea
@@ -241,6 +256,7 @@ function NewDecision() {
               >
 
                 {loading ? (
+
                   <>
                     <Loader2
                       size={18}
@@ -249,7 +265,9 @@ function NewDecision() {
 
                     Creating Decision...
                   </>
+
                 ) : (
+
                   <>
                     Create Decision Room
 
@@ -258,6 +276,7 @@ function NewDecision() {
                       className="transition-transform group-hover:translate-x-1"
                     />
                   </>
+
                 )}
 
               </button>
@@ -301,6 +320,7 @@ function NewDecision() {
         </div>
 
       </div>
+
     </div>
   );
 }

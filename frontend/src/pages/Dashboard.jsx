@@ -288,7 +288,7 @@ function Dashboard() {
 
       const response =
         await fetch(
-          "http://localhost:5001/api/auth/profile",
+          `${import.meta.env.VITE_API_URL}/api/auth/profile`,
           {
             method: "PUT",
 
@@ -396,7 +396,7 @@ function Dashboard() {
 
         const response =
           await fetch(
-            "http://localhost:5001/api/decisions",
+            `${import.meta.env.VITE_API_URL}/api/decisions`,
             {
               headers: {
                 Authorization:
@@ -1011,7 +1011,7 @@ function Dashboard() {
 
                   {getInitials(
                     profileName ||
-                      name
+                    name
                   )}
 
                 </div>

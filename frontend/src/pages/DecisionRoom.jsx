@@ -52,7 +52,7 @@ function DecisionRoom() {
       }
 
       const response = await fetch(
-        `http://localhost:5001/api/decisions/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/decisions/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -98,7 +98,7 @@ function DecisionRoom() {
       setError("");
 
       const response = await fetch(
-        `http://localhost:5001/api/decisions/${id}/analyze`,
+        `${import.meta.env.VITE_API_URL}/api/decisions/${id}/analyze`,
         {
           method: "POST",
           headers: {
@@ -145,7 +145,7 @@ function DecisionRoom() {
       setError("");
 
       const response = await fetch(
-        `http://localhost:5001/api/decisions/${id}/report`,
+        `${import.meta.env.VITE_API_URL}/api/decisions/${id}/report`,
         {
           method: "POST",
           headers: {
@@ -592,21 +592,23 @@ function DecisionRoom() {
                     <div className="mb-5">
 
                       <AIFormattedText className="text-sm text-gray-400">
-                            {analysis.analysis}
+                        {analysis.analysis}
                       </AIFormattedText>
 
                     </div>
 
                     {/* Recommendation */}
-                      <div className="rounded-xl border border-white/10 bg-black/20 p-4">
-  <p className="mb-2 text-xs uppercase tracking-wide text-gray-600">
-    Recommendation
-  </p>
+                    <div className="rounded-xl border border-white/10 bg-black/20 p-4">
 
-  <AIFormattedText className="text-sm font-medium text-gray-300">
-    {analysis.recommendation}
-  </AIFormattedText>
-</div>
+                      <p className="mb-2 text-xs uppercase tracking-wide text-gray-600">
+                        Recommendation
+                      </p>
+
+                      <AIFormattedText className="text-sm font-medium text-gray-300">
+                        {analysis.recommendation}
+                      </AIFormattedText>
+
+                    </div>
 
                   </div>
                 );
@@ -732,27 +734,30 @@ function DecisionRoom() {
 
             {/* Final Recommendation */}
             {/* Recommendation */}
-<div className="mb-5 rounded-xl border border-green-500/20 bg-green-500/[0.03] p-5">
-  <div className="mb-3 flex items-center gap-2">
+            <div className="mb-5 rounded-xl border border-green-500/20 bg-green-500/[0.03] p-5">
 
-    <CheckCircle2
-      size={19}
-      className="text-green-400"
-    />
+              <div className="mb-3 flex items-center gap-2">
 
-    <h3 className="text-sm font-semibold uppercase tracking-wide">
-      Final Recommendation
-    </h3>
+                <CheckCircle2
+                  size={19}
+                  className="text-green-400"
+                />
 
-  </div>
+                <h3 className="text-sm font-semibold uppercase tracking-wide">
+                  Final Recommendation
+                </h3>
 
-  <AIFormattedText className="text-sm leading-7 text-gray-300">
-    {report.final_recommendation ||
-      report.recommendation ||
-      report.summary ||
-      "No final recommendation available."}
-  </AIFormattedText>
-</div>
+              </div>
+
+              <AIFormattedText className="text-sm leading-7 text-gray-300">
+                {report.final_recommendation ||
+                  report.recommendation ||
+                  report.summary ||
+                  "No final recommendation available."}
+              </AIFormattedText>
+
+            </div>
+
             {/* Confidence */}
             <div className="mb-5 rounded-xl border border-white/10 bg-black/20 p-5">
 

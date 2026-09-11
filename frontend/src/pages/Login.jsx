@@ -1,33 +1,35 @@
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, LockKeyhole, Sparkles } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-
 import BackgroundFX from "../components/BackgroundFX";
 
 function Login() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-    async function handleLogin(event) {
-    event.preventDefault();
 
+  async function handleLogin(event) {
+    event.preventDefault();
     setError("");
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5001/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        }
+      );
 
       const data = await response.json();
 
@@ -45,12 +47,12 @@ function Login() {
       setLoading(false);
     }
   }
+
   return (
     <div className="relative min-h-screen overflow-hidden text-white">
       <BackgroundFX mouse={{ x: 50, y: 50 }} />
 
       <div className="relative z-10 flex min-h-screen items-center justify-center px-6 py-12">
-
         <div className="w-full max-w-md">
 
           {/* Back */}
@@ -110,7 +112,7 @@ function Login() {
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400/40 focus:bg-blue-500/[0.04]"
-                  />
+                />
               </div>
 
               <div>
@@ -128,37 +130,38 @@ function Login() {
                 </div>
 
                 <input
-                type="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400/40 focus:bg-blue-500/[0.04]"
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-400/40 focus:bg-blue-500/[0.04]"
                 />
               </div>
-              {error && (
-  <p className="rounded-xl border border-red-400/20 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-    {error}
-  </p>
-)}
 
-             <button
+              {error && (
+                <p className="rounded-xl border border-red-400/20 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+                  {error}
+                </p>
+              )}
+
+              <button
                 type="submit"
                 disabled={loading}
                 className="group flex w-full items-center justify-center gap-2 rounded-xl bg-blue-500 py-3.5 text-sm font-semibold transition hover:bg-blue-400 disabled:cursor-not-allowed disabled:opacity-60"
-                >
+              >
                 {loading ? "Entering..." : "Enter Decision Room"}
 
                 <ArrowRight
-                size={17}
-                className="transition-transform duration-300 group-hover:translate-x-1"
+                  size={17}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
                 />
               </button>
-
             </form>
 
             {/* Signup */}
             <p className="mt-7 text-center text-sm text-slate-500">
               Don't have an account?{" "}
+
               <Link
                 to="/signup"
                 className="text-blue-400 transition hover:text-blue-300"
@@ -166,7 +169,6 @@ function Login() {
                 Create one
               </Link>
             </p>
-
           </div>
 
           <p className="mt-6 text-center text-xs text-slate-600">

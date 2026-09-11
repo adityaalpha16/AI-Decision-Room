@@ -4,14 +4,11 @@ import {
   LockKeyhole,
   Sparkles,
 } from "lucide-react";
-
 import {
   Link,
   useNavigate,
 } from "react-router-dom";
-
 import { useState } from "react";
-
 import BackgroundFX from "../components/BackgroundFX";
 
 function Signup() {
@@ -20,13 +17,11 @@ function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSignup(event) {
     event.preventDefault();
-
     setError("");
 
     if (!name.trim() || !email.trim() || !password) {
@@ -35,9 +30,7 @@ function Signup() {
     }
 
     if (password.length < 6) {
-      setError(
-        "Password must be at least 6 characters."
-      );
+      setError("Password must be at least 6 characters.");
       return;
     }
 
@@ -45,7 +38,7 @@ function Signup() {
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:5001/api/auth/signup",
+        `${import.meta.env.VITE_API_URL}/api/auth/signup`,
         {
           method: "POST",
           headers: {
@@ -102,7 +95,6 @@ function Signup() {
       <BackgroundFX mouse={{ x: 50, y: 50 }} />
 
       <div className="relative z-10 flex min-h-screen items-center justify-center px-6 py-12">
-
         <div className="w-full max-w-md">
 
           {/* Back */}
@@ -240,12 +232,12 @@ function Signup() {
                   />
                 )}
               </button>
-
             </form>
 
             {/* Login */}
             <p className="mt-7 text-center text-sm text-slate-500">
               Already have an account?{" "}
+
               <Link
                 to="/login"
                 className="text-blue-400 transition hover:text-blue-300"
@@ -253,7 +245,6 @@ function Signup() {
                 Log in
               </Link>
             </p>
-
           </div>
 
           <p className="mt-6 text-center text-xs text-slate-600">
