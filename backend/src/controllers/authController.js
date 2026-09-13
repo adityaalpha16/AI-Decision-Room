@@ -42,7 +42,7 @@ async function signup(req, res) {
       });
     }
 
-    const user =
+    const {user,token} =
       await signupUser(
         name,
         email,
@@ -54,6 +54,7 @@ async function signup(req, res) {
       message:
         "User registered successfully",
       user,
+      token
     });
   } catch (error) {
     console.error(
