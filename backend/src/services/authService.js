@@ -23,8 +23,21 @@ async function signupUser(name, email, password) {
      RETURNING id, name, email, created_at`,
     [name, email, passwordHash]
   );
+  const user=result.rows[0];
 
-  return result.rows[0];
+   const token = jwt.sign(
+    {
+      id: user.id,
+      email: user.email,
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "1d",
+    }
+  );
+  return {
+    user,token
+  }
 }
 
 async function loginUser(email, password) {
