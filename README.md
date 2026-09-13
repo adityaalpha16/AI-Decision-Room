@@ -160,6 +160,13 @@ Protected backend endpoints verify the user's JWT before accessing user-specific
 
 ---
 
+🌐 Live Demo
+Check out the live application here:
+
+URL: https://ai-decision-room.vercel.app
+
+---
+
 ## 🔄 Decision Workflow
 
 ```text
